@@ -68,14 +68,14 @@ task :create_post, [:post, :date, :content] do |t, args|
   post_date= args.date || Time.new.strftime("%Y-%m-%d %H:%M:%S %Z")
 
   # remove the time from post_date (the filename does not support it)
-  filename = post_date[0..9] + "-" + post_title.gsub(' ', '_') + ".textile"
+  filename = post_date[0..9] + "-" + post_title.gsub(' ', '_') + ".markdown"
 
   # generate a unique filename appending a number
   i = 1
   while File.exists?($post_dir + filename) do
     filename = post_date[0..9] + "-" + 
                post_title.gsub(' ', '_') + "-" + i.to_s + 
-               ".textile"
+               ".markdown"
     i += 1
   end
 
@@ -134,7 +134,7 @@ def file_matches(filename)
 end 
 
 def file_change_ext(filename, newext)
-  if File.extname(filename) == ".textile" or File.extname(filename) == ".md" then
+  if File.extname(filename) == ".markdown" or File.extname(filename) == ".md" then
     filename.sub(File.extname(filename), newext)
   else  
     filename
