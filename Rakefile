@@ -72,7 +72,7 @@ task :create_post, [:post, :date, :content] do |t, args|
     return title.downcase.strip.gsub(' ', '-').gsub(/[^\w-]/, '')
   end
 
-  extension = ".textile"
+  extension = ".markdown"
 
   filename = post_date[0..9] +"-"+ slugify( post_title ) + extension
 
